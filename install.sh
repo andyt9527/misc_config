@@ -88,7 +88,7 @@ if [ -d $MYVIM_DIR ]; then
   message "vim config exists"
 else
   message "no vim configs, clone it"
-  git clone https://github.com/andytian1991/vim_config.git $MYVIM_DIR
+  git clone https://github.com/andytian1991/my_vimrc.git $MYVIM_DIR
 fi
 
 message "update vimrc/bundle"
