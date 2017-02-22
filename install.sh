@@ -38,7 +38,7 @@ if [ -d "$ZSH" ]; then
   message "You'll need to remove $ZSH if you want to re-install."
 else
   message "no oh_my_zsh found, install it"
-  git clone git://github.com/robbyrussell/oh-my-zsh.git $ZSH
+  git clone git://github.com/andytian1991/oh-my-zsh.git $ZSH
 
   # Source ~/.zshrc because we need oh-my-zsh variables
   source $ZSH/templates/zshrc.zsh-template ~/.zshrc
