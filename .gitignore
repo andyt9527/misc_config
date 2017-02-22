@@ -1,2 +1,3 @@
 # 忽略vim_config目录
 /vim_config/*
+/tig/*
