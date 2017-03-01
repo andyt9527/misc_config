@@ -1,0 +1,31 @@
+From 5e772e508e95f494ab135193732c7cffdcb99ee4 Mon Sep 17 00:00:00 2001
+From: "yang.tian" <andytian1991@163.com>
+Date: Wed, 1 Mar 2017 13:54:32 +0800
+Subject: [PATCH] Do not use less to show git log message.
+
+Just show git log message in terminal.
+
+Signed-off-by:Tian Yang <andytian1991@163.com>
+---
+ lib/misc.zsh | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/lib/misc.zsh b/lib/misc.zsh
+index 3052b77..f12bc09 100644
+--- a/lib/misc.zsh
++++ b/lib/misc.zsh
+@@ -19,8 +19,9 @@ fi
+ setopt long_list_jobs
+ 
+ ## pager
+-env_default PAGER 'less'
+-env_default LESS '-R'
++##Do not use less to display git log message
++#env_default PAGER 'less'
++#env_default LESS '-R'
+ 
+ ## super user alias
+ alias _='sudo'
+-- 
+1.9.1
+

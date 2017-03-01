@@ -38,15 +38,16 @@ if [ -d "$ZSH" ]; then
   message "You'll need to remove $ZSH if you want to re-install."
 else
   message "no oh_my_zsh found, install it"
-  git clone git://github.com/andytian1991/oh-my-zsh.git $ZSH
+  git clone git://github.com/robbyrussell/oh-my-zsh.git $ZSH
 
   # Source ~/.zshrc because we need oh-my-zsh variables
   source $ZSH/templates/zshrc.zsh-template ~/.zshrc
 
-  # am patches needed
+  # apply patches needed
   cd $ZSH
   git am $CURRENT_DIR/omz_patches/0001-hack-for-prompt-show-down-due-to-git-status-stuff.patch
   git am $CURRENT_DIR/omz_patches/0002-add-my-OMZ-theme.patch
+  git am $CURRENT_DIR/omz_patches/0001-Do-not-use-less-to-show-git-log-message.patch
 
   # If folder isn't exist, then make it
   [ -d $ZSH_CUSTOM/plugins ] || mkdir $ZSH_CUSTOM/plugins
