@@ -61,7 +61,7 @@ else
     # If this platform provides a "chsh" command (not Cygwin), do it, man!
     if hash chsh >/dev/null 2>&1; then
       message "Time to change your default shell to zsh!"
-      chsh -s $(grep /zsh$ /etc/shells | tail -1)
+     ##### chsh -s $(grep /zsh$ /etc/shells | tail -1)
     # Else, suggest the user do so manually.
     else
       message "I can't change your shell automatically because this system does not have chsh."
@@ -71,12 +71,14 @@ else
 fi
 
 # use symblink for all configs
+MYBASH_RC="$HOME/.bashrc"
 MYZSH_RC="$HOME/.zshrc"
 MYTIG_RC="$HOME/.tigrc"
 MYTIG_THEME="$HOME/.tigrc.theme"
 MYTMUX_CONF="$HOME/.tmux.conf"
 MYGIT_CONF="$HOME/.gitconfig"
 
+lnif $CURRENT_DIR/bashrc $MYBASH_RC
 lnif $CURRENT_DIR/zshrc $MYZSH_RC
 lnif $CURRENT_DIR/tigrc $MYTIG_RC
 lnif $CURRENT_DIR/tigrc.theme $MYTIG_THEME

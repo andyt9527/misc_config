@@ -94,3 +94,5 @@ export KEYTIMEOUT=1
 #bindkey "^[[B" history-search-forward
 
 alias tmux="tmux -2"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
