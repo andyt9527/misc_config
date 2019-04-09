@@ -47,7 +47,7 @@ else
   cd $ZSH
   git am $CURRENT_DIR/omz_patches/0001-hack-for-prompt-show-down-due-to-git-status-stuff.patch
   git am $CURRENT_DIR/omz_patches/0002-add-my-OMZ-theme.patch
-  git am $CURRENT_DIR/omz_patches/0001-Do-not-use-less-to-show-git-log-message.patch
+  git am $CURRENT_DIR/omz_patches/0003-Do-not-use-less-to-show-git-log-message.patch
 
   # If folder isn't exist, then make it
   [ -d $ZSH_CUSTOM/plugins ] || mkdir $ZSH_CUSTOM/plugins

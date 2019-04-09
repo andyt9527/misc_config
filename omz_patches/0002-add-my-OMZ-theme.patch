@@ -1,7 +1,7 @@
-From 2305c3a9f40319fb15b3563005e9e0831b6b9f23 Mon Sep 17 00:00:00 2001
+From 97e8f6aed05f9b125736606885a99d66099bfcc8 Mon Sep 17 00:00:00 2001
 From: Winter Wang <b55847@freescale.com>
 Date: Sun, 2 Aug 2015 10:29:45 +0800
-Subject: [PATCH 2/2] add my OMZ theme.
+Subject: [PATCH 2/3] add my OMZ theme.
 
 ---
  themes/mine.zsh-theme | 7 +++++++
@@ -22,5 +22,5 @@ index 0000000..3805ef8
 +ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%})%{$fg[yellow]%}*%{$reset_color%}"
 +ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 -- 
-1.9.1
+2.7.4
 
