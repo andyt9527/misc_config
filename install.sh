@@ -1,5 +1,13 @@
 #!/usr/bin/env zsh
 
+
+#git clone https://github.com/vim/vim.git 
+#cd vim
+#git checkout -b v8-1453 v8.0.1453
+#./configure --with-features=huge  --enable-multibyte   --enable-rubyinterp=yes   --enable-pythoninterp=yes  --enable-python3interp=yes --with-python3-config-dir=/usr/lib/python3.5/config  --enable-perlinterp=yes  --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr --enable-fail-if-missing
+#make VIMRUNTIMEDIR=/usr/share/vim/vim80
+#sudo make install
+
 CURRENT_DIR=`pwd`
 
 # Red bold error
