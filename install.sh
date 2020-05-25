@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 
-#git clone https://github.com/vim/vim.git 
+#git clone https://github.com/vim/vim.git
 #cd vim
 #git checkout -b v8-1453 v8.0.1453
 #./configure --with-features=huge  --enable-multibyte   --enable-rubyinterp=yes   --enable-pythoninterp=yes  --enable-python3interp=yes --with-python3-config-dir=/usr/lib/python3.5/config  --enable-perlinterp=yes  --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr --enable-fail-if-missing
@@ -101,6 +101,8 @@ else
   message "no vim configs, clone it"
   git clone https://github.com/andytian1991/vim_config.git $MYVIM_DIR
 fi
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 message "update vimrc/bundle"
 cd $MYVIM_DIR
