@@ -6,6 +6,7 @@
 	ui = auto
 [core]
 	editor = vim
+	pager = less -F -X
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%cn, %cd%Creset' --abbrev-commit --date=short
 	dt = difftool
