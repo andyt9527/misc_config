@@ -1,4 +1,20 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+
+####install some packages required##########
+
+#fzf
+sudo apt-get install fzf
+#ctags
+sudo apt-get install universal-ctags
+#tmux
+#vim
+#zsh
+sudo apt-get install zsh
+#ag
+sudo apt install silversearcher-ag
+#ripgrep
+sudo apt-get install ripgrep
+#################
 
 
 #git clone https://github.com/vim/vim.git
