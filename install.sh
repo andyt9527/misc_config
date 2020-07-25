@@ -103,7 +103,7 @@ MYTMUX_CONF="$HOME/.tmux.conf"
 MYGIT_CONF="$HOME/.gitconfig"
 
 lnif $CURRENT_DIR/bashrc $MYBASH_RC
-lnif $CURRENT_DIR/zshrc $MYZSH_RC
+cat $CURRENT_DIR/zshrc >> $MYZSH_RC
 lnif $CURRENT_DIR/tigrc $MYTIG_RC
 lnif $CURRENT_DIR/tigrc.theme $MYTIG_THEME
 lnif $CURRENT_DIR/tmux.conf $MYTMUX_CONF
