@@ -65,13 +65,14 @@ else
   git clone https://github.com/robbyrussell/oh-my-zsh.git $ZSH
 
   # Source ~/.zshrc because we need oh-my-zsh variables
-  source $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  source ~/.zshrc
 
   # apply patches needed
   #cd $ZSH
   #git am $CURRENT_DIR/omz_patches/0001-hack-for-prompt-show-down-due-to-git-status-stuff.patch
   #git am $CURRENT_DIR/omz_patches/0002-add-my-OMZ-theme.patch
-  git am $CURRENT_DIR/omz_patches/0003-Do-not-use-less-to-show-git-log-message.patch
+  #git am $CURRENT_DIR/omz_patches/0003-Do-not-use-less-to-show-git-log-message.patch
 
   # If folder isn't exist, then make it
   [ -d $ZSH_CUSTOM/plugins ] || mkdir $ZSH_CUSTOM/plugins
@@ -85,7 +86,7 @@ else
     # If this platform provides a "chsh" command (not Cygwin), do it, man!
     if hash chsh >/dev/null 2>&1; then
       message "Time to change your default shell to zsh!"
-     ##### chsh -s $(grep /zsh$ /etc/shells | tail -1)
+      chsh -s $(grep /zsh$ /etc/shells | tail -1)
     # Else, suggest the user do so manually.
     else
       message "I can't change your shell automatically because this system does not have chsh."
@@ -102,7 +103,7 @@ MYTIG_THEME="$HOME/.tigrc.theme"
 MYTMUX_CONF="$HOME/.tmux.conf"
 MYGIT_CONF="$HOME/.gitconfig"
 
-lnif $CURRENT_DIR/bashrc $MYBASH_RC
+#lnif $CURRENT_DIR/bashrc $MYBASH_RC
 cat $CURRENT_DIR/zshrc >> $MYZSH_RC
 lnif $CURRENT_DIR/tigrc $MYTIG_RC
 lnif $CURRENT_DIR/tigrc.theme $MYTIG_THEME
