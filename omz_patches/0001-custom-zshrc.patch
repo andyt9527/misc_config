@@ -1,0 +1,33 @@
+From 5543447a956cf5fde108398ee5fd451271b42c7c Mon Sep 17 00:00:00 2001
+From: "yang.tian" <yang.tian@nxp.com>
+Date: Tue, 4 Aug 2020 15:53:41 +0800
+Subject: [PATCH] custom zshrc
+
+Signed-off-by: yang.tian <yang.tian@nxp.com>
+---
+ templates/zshrc.zsh-template | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/templates/zshrc.zsh-template b/templates/zshrc.zsh-template
+index 30761810..e03fc499 100644
+--- a/templates/zshrc.zsh-template
++++ b/templates/zshrc.zsh-template
+@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
+ # Custom plugins may be added to $ZSH_CUSTOM/plugins/
+ # Example format: plugins=(rails git textmate ruby lighthouse)
+ # Add wisely, as too many plugins slow down shell startup.
+-plugins=(git)
++plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+ 
+ source $ZSH/oh-my-zsh.sh
+ 
+@@ -97,3 +97,6 @@ source $ZSH/oh-my-zsh.sh
+ # Example aliases
+ # alias zshconfig="mate ~/.zshrc"
+ # alias ohmyzsh="mate ~/.oh-my-zsh"
++alias tmux="tmux -2"
++
++[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+-- 
+2.17.1
+

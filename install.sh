@@ -65,11 +65,12 @@ else
   git clone https://github.com/robbyrussell/oh-my-zsh.git $ZSH
 
   # Source ~/.zshrc because we need oh-my-zsh variables
-  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+  lnif $ZSH/templates/zshrc.zsh-template ~/.zshrc
   source ~/.zshrc
 
   # apply patches needed
-  #cd $ZSH
+  cd $ZSH
+  git am $CURRENT_DIR/omz_patches/0001-custom-zshrc.patch
   #git am $CURRENT_DIR/omz_patches/0001-hack-for-prompt-show-down-due-to-git-status-stuff.patch
   #git am $CURRENT_DIR/omz_patches/0002-add-my-OMZ-theme.patch
   #git am $CURRENT_DIR/omz_patches/0003-Do-not-use-less-to-show-git-log-message.patch
@@ -97,14 +98,14 @@ fi
 
 # use symblink for all configs
 MYBASH_RC="$HOME/.bashrc"
-MYZSH_RC="$HOME/.zshrc"
+#MYZSH_RC="$HOME/.zshrc"
 MYTIG_RC="$HOME/.tigrc"
 MYTIG_THEME="$HOME/.tigrc.theme"
 MYTMUX_CONF="$HOME/.tmux.conf"
 MYGIT_CONF="$HOME/.gitconfig"
 
 #lnif $CURRENT_DIR/bashrc $MYBASH_RC
-cat $CURRENT_DIR/zshrc >> $MYZSH_RC
+#cat $CURRENT_DIR/zshrc >> $MYZSH_RC
 lnif $CURRENT_DIR/tigrc $MYTIG_RC
 lnif $CURRENT_DIR/tigrc.theme $MYTIG_THEME
 lnif $CURRENT_DIR/tmux.conf $MYTMUX_CONF
