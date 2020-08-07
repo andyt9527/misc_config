@@ -71,6 +71,7 @@ else
   # apply patches needed
   cd $ZSH
   git am $CURRENT_DIR/omz_patches/0001-custom-zshrc.patch
+  git am $CURRENT_DIR/omz_patches/0001-disable-auto-title-change.patch
   #git am $CURRENT_DIR/omz_patches/0001-hack-for-prompt-show-down-due-to-git-status-stuff.patch
   #git am $CURRENT_DIR/omz_patches/0002-add-my-OMZ-theme.patch
   #git am $CURRENT_DIR/omz_patches/0003-Do-not-use-less-to-show-git-log-message.patch

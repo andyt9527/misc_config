@@ -1,0 +1,25 @@
+From 64909097718f4f2e27b24ffdfb712f771fa05ccb Mon Sep 17 00:00:00 2001
+From: "yang.tian" <yang.tian@nxp.com>
+Date: Fri, 7 Aug 2020 13:40:40 +0800
+Subject: [PATCH] disable auto title change
+
+---
+ templates/zshrc.zsh-template | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/templates/zshrc.zsh-template b/templates/zshrc.zsh-template
+index e03fc499..8ae80338 100644
+--- a/templates/zshrc.zsh-template
++++ b/templates/zshrc.zsh-template
+@@ -39,7 +39,7 @@ ZSH_THEME="robbyrussell"
+ # DISABLE_LS_COLORS="true"
+ 
+ # Uncomment the following line to disable auto-setting terminal title.
+-# DISABLE_AUTO_TITLE="true"
++DISABLE_AUTO_TITLE="true"
+ 
+ # Uncomment the following line to enable command auto-correction.
+ # ENABLE_CORRECTION="true"
+-- 
+2.17.1
+
