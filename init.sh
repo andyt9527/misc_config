@@ -23,6 +23,7 @@ sudo apt-get install openjdk-11-jdk
 
 sudo apt-get install android-tools-adb android-tools-fastboot
 sudo apt-get install android-sdk-platform-tools-common
+sudo apt-get install aapt
 sudo cp ~/WorkEnv/51-android.rules /etc/udev/rules.d/51-android.rules
 
 sudo apt-get install minicom
