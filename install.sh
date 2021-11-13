@@ -118,7 +118,7 @@ if [ -d $MYVIM_DIR ]; then
   message "vim config exists"
 else
   message "no vim configs, clone it"
-  git clone https://github.com/andytian1991/vim_config.git $MYVIM_DIR
+  git clone https://github.com/andytian1991/space-vim.git $MYVIM_DIR
 fi
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
