@@ -1,6 +1,6 @@
 [user]
-	name = yang.tian
-	email = yang.tian@nxp.com
+	name = Andy Tian
+	email = andy.tian@cixtech.com
 	
 [color]
 	ui = auto
@@ -23,3 +23,8 @@
 	cookiefile = %USERPROFILE%\\.gitcookies
 [credential]
 	helper = store
+[url "ssh://codereview.cixcomputing.com:29418/"]
+	pushInsteadOf = ssh://git@gitmirror.cixcomputing.com/
+	pushInsteadOf = ssh://gitmirror.cixcomputing.com/
+[safe]
+	directory = /home/andy/NXP_IMX/imx-yocto-bsp-5.15.5/imx-8mp/tmp/work/cortexa53-crypto-poky-linux/onnxruntime/1.10.0-r0/build/pybind11/src/pybind11

@@ -35,19 +35,19 @@ sudo apt-get install cifs-utils
 sudo apt-get install nfs-kernel-server nfs-common
 
 #nfs server
-mkdir ~/nfs-release-server
-mkdir ~/nfs-2-server
-mkdir ~/nfs-2-ssd
-mkdir ~/nfs-179-sharewrite
-mkdir ~/nfs-daily
-mkdir ~//nfs-vm-server
+#mkdir ~/nfs-release-server
+#mkdir ~/nfs-2-server
+#mkdir ~/nfs-2-ssd
+#mkdir ~/nfs-179-sharewrite
+#mkdir ~/nfs-daily
+#mkdir ~//nfs-vm-server
 
-sudo mount 10.193.102.2:/home/tianyang ~/nfs-2-server
-sudo mount 10.193.102.2:/home/ssd-2/tianyang ~/nfs-2-ssd
-sudo mount 10.193.108.179:/home/build/daily_images ~/nfs-daily
-sudo mount 10.193.108.180:/home/build/share_write  ~/nfs-179-sharewrite
-sudo mount -t cifs -o guest //lsv11119.swis.cn-sha01.nxp.com/android ~/nfs-vm-server
-sudo mount -t cifs //10.193.108.248/smbshare ~/nfs-release-server/ -o user=smbruser
+#sudo mount 10.193.102.2:/home/tianyang ~/nfs-2-server
+#sudo mount 10.193.102.2:/home/ssd-2/tianyang ~/nfs-2-ssd
+#sudo mount 10.193.108.179:/home/build/daily_images ~/nfs-daily
+#sudo mount 10.193.108.180:/home/build/share_write  ~/nfs-179-sharewrite
+#sudo mount -t cifs -o guest //lsv11119.swis.cn-sha01.nxp.com/android ~/nfs-vm-server
+#sudo mount -t cifs //10.193.108.248/smbshare ~/nfs-release-server/ -o user=smbruser
 #Welcome@2018
 
-sudo cp ~/nfs-daily/uuu/1.4.139/linux/uuu /usr/bin
+#sudo cp ~/nfs-daily/uuu/1.4.139/linux/uuu /usr/bin
