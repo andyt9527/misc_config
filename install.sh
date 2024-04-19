@@ -3,7 +3,9 @@
 ####install some packages required##########
 
 #fzf
-sudo apt-get install fzf
+#sudo apt-get install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 #ctags
 sudo apt-get install universal-ctags
 #tmux
@@ -20,7 +22,11 @@ sudo apt-get install ripgrep
 #git clone https://github.com/vim/vim.git
 #cd vim
 #git checkout -b v8-1453 v8.0.1453
-#./configure --with-features=huge  --enable-multibyte   --enable-rubyinterp=yes   --enable-pythoninterp=yes  --enable-python3interp=yes --with-python3-config-dir=/usr/lib/python3.5/config  --enable-perlinterp=yes  --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr --enable-fail-if-missing
+#./configure --with-features=huge  --enable-multibyte \
+#--enable-rubyinterp=yes   --enable-pythoninterp=yes  --enable-python3interp=yes \
+#  --with-python3-config-dir=/usr/lib/python3.5/config  --enable-perlinterp=yes  \
+#  --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr \
+#  --enable-fail-if-missing
 #make VIMRUNTIMEDIR=/usr/share/vim/vim80
 #sudo make install
 
