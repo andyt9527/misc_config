@@ -1,53 +1,208 @@
 #!/usr/bin/env bash
 
-sudo apt-get update
+#==========================================
+# 初始化脚本 - 配置开发环境
+#==========================================
 
-#sudo apt-get install git
-#mkdir ~/WorkEnv
-#cd ~/WorkEnv
-#git clone https://github.com/andytian1991/misc_config.git .
+set -e
 
-sudo apt-get install openssh-server
-sudo ufw allow ssh
+# 颜色输出
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
 
-#android build requirements
-sudo apt-get install git-core gnupg flex bison build-essential \
-    zip curl zlib1g-dev gcc-multilib g++-multilib \
-    libc6-dev-i386 libncurses5 lib32ncurses5-dev x11proto-core-dev \
-    libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig
+error() { echo -e "${RED}Error: $*$NC" >&2; exit 1; }
+info() { echo -e "${GREEN}[INFO]$*${NC}"; }
+warn() { echo -e "${YELLOW}[WARN]$*${NC}"; }
 
-sudo apt-get install vim
-sudo apt-get install zsh
-sudo apt-get install net-tools
-sudo apt-get install openjdk-11-jdk
+CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-sudo apt-get install android-tools-adb android-tools-fastboot
-sudo apt-get install android-sdk-platform-tools-common
-sudo apt-get install aapt
-sudo cp ~/WorkEnv/51-android.rules /etc/udev/rules.d/51-android.rules
+#==========================================
+# 安装基础工具
+#==========================================
+install_tools() {
+    info "安装基础工具..."
 
-sudo apt-get install minicom
+    # fzf
+    if [ ! -d "$HOME/.fzf" ]; then
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install --all --no-bash --no-fish
+    fi
 
-sudo apt-get install samba
-sudo ufw allow samba
+    # ctags
+    command -v ctags >/dev/null 2>&1 || sudo apt-get install -y universal-ctags
 
-sudo apt-get install cifs-utils
-sudo apt-get install nfs-kernel-server nfs-common
+    # ag
+    command -v ag >/dev/null 2>&1 || sudo apt-get install -y silversearcher-ag
 
-#nfs server
-#mkdir ~/nfs-release-server
-#mkdir ~/nfs-2-server
-#mkdir ~/nfs-2-ssd
-#mkdir ~/nfs-179-sharewrite
-#mkdir ~/nfs-daily
-#mkdir ~//nfs-vm-server
+    # ripgrep
+    command -v rg >/dev/null 2>&1 || sudo apt-get install -y ripgrep
+}
 
-#sudo mount 10.193.102.2:/home/tianyang ~/nfs-2-server
-#sudo mount 10.193.102.2:/home/ssd-2/tianyang ~/nfs-2-ssd
-#sudo mount 10.193.108.179:/home/build/daily_images ~/nfs-daily
-#sudo mount 10.193.108.180:/home/build/share_write  ~/nfs-179-sharewrite
-#sudo mount -t cifs -o guest //lsv11119.swis.cn-sha01.nxp.com/android ~/nfs-vm-server
-#sudo mount -t cifs //10.193.108.248/smbshare ~/nfs-release-server/ -o user=smbruser
-#Welcome@2018
+#==========================================
+# 安装 Oh My Zsh
+#==========================================
+install_oh_my_zsh() {
+    if [ -n "$ZSH" ]; then
+        ZSH_PATH="$ZSH"
+    else
+        ZSH_PATH="$HOME/.oh-my-zsh"
+    fi
 
-#sudo cp ~/nfs-daily/uuu/1.4.139/linux/uuu /usr/bin
+    if [ -d "$ZSH_PATH" ]; then
+        info "Oh My Zsh 已安装"
+    else
+        info "安装 Oh My Zsh..."
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    fi
+}
+
+#==========================================
+# 安装 Zsh 插件
+#==========================================
+install_zsh_plugins() {
+    ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+    PLUGINS_DIR="$ZSH_CUSTOM/plugins"
+
+    mkdir -p "$PLUGINS_DIR"
+
+    # zsh-autosuggestions
+    if [ ! -d "$PLUGINS_DIR/zsh-autosuggestions" ]; then
+        info "安装 zsh-autosuggestions..."
+        git clone https://github.com/zsh-users/zsh-autosuggestions "$PLUGINS_DIR/zsh-autosuggestions"
+    fi
+
+    # zsh-syntax-highlighting
+    if [ ! -d "$PLUGINS_DIR/zsh-syntax-highlighting" ]; then
+        info "安装 zsh-syntax-highlighting..."
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting "$PLUGINS_DIR/zsh-syntax-highlighting"
+    fi
+}
+
+#==========================================
+# 配置 ~/.zshrc（不再使用 patch）
+#==========================================
+configure_zshrc() {
+    ZSHRC="$HOME/.zshrc"
+
+    # 检查是否已包含配置
+    if grep -q "my-oh-my-zsh-config" "$ZSHRC" 2>/dev/null; then
+        info "zshrc 已配置"
+    else
+        info "配置 zshrc..."
+
+        # 追加自定义配置
+        cat >> "$ZSHRC" << 'EOF'
+
+# ===== my-oh-my-zsh-config =====
+# 插件配置
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# 禁用自动终端标题
+export DISABLE_AUTO_TITLE=true
+
+# 别名
+alias tmux="tmux -2"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# ====================================
+EOF
+    fi
+}
+
+#==========================================
+# 配置符号链接
+#==========================================
+setup_symlinks() {
+    info "创建符号链接..."
+
+    lnif() {
+        if [ -e "$1" ]; then
+            ln -sf "$1" "$2"
+            info "链接: $2 -> $1"
+        fi
+    }
+
+    lnif "$CURRENT_DIR/tigrc" "$HOME/.tigrc"
+    lnif "$CURRENT_DIR/tigrc.theme" "$HOME/.tigrc.theme"
+    lnif "$CURRENT_DIR/tmux.conf" "$HOME/.tmux.conf"
+    lnif "$CURRENT_DIR/gitconfig" "$HOME/.gitconfig"
+    lnif "$CURRENT_DIR/bashrc" "$HOME/.bashrc"
+}
+
+#==========================================
+# 安装 Vim 配置
+#==========================================
+install_vim_config() {
+    VIM_DIR="$CURRENT_DIR/vim_config"
+
+    if [ -d "$VIM_DIR" ]; then
+        info "vim 配置已存在"
+    else
+        info "克隆 vim 配置..."
+        git clone https://github.com/andytian1991/space-vim.git "$VIM_DIR"
+    fi
+
+    if [ -f "$VIM_DIR/install.sh" ]; then
+        info "安装 vim 配置..."
+        cd "$VIM_DIR" && sh -c ./install.sh
+    fi
+}
+
+#==========================================
+# 安装 Tmux 插件
+#==========================================
+install_tmux_plugins() {
+    TPM_DIR="$HOME/.tmux/plugins/tpm"
+
+    if [ ! -d "$TPM_DIR" ]; then
+        info "安装 tmux 插件管理器 (TPM)..."
+        git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+    fi
+}
+
+#==========================================
+# 切换默认 Shell
+#==========================================
+switch_to_zsh() {
+    if [ -z "$ZSH" ]; then
+        ZSH_PATH="$HOME/.oh-my-zsh"
+    fi
+
+    TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
+    if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
+        if command -v chsh >/dev/null 2>&1; then
+            info "切换默认 shell 到 zsh..."
+            chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
+        else
+            warn "无法自动切换 shell，请手动执行: chsh -s \$(which zsh)"
+        fi
+    fi
+}
+
+#==========================================
+# 主流程
+#==========================================
+main() {
+    info "开始初始化开发环境..."
+
+    # 检查是否为 root 用户
+    if [ "$EUID" -eq 0 ]; then
+        error "请不要使用 sudo 运行此脚本"
+    fi
+
+    install_tools
+    install_oh_my_zsh
+    install_zsh_plugins
+    configure_zshrc
+    setup_symlinks
+    install_vim_config
+    install_tmux_plugins
+    switch_to_zsh
+
+    info "初始化完成！请重新加载终端或执行: source ~/.zshrc"
+}
+
+main "$@"
